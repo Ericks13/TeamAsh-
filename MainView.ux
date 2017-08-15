@@ -3,7 +3,7 @@
         <StatusBarBackground Dock="Top" />
         <ScrollView ClipToBounds="true">
             <StackPanel>
-                <Text FontSize="30">Project Ash</Text>
+                <Text FontSize="30">Welcome to Ash!</Text>
                 <Slider />
                 <Button Text="Button" />
                 <Switch Alignment="Left" />
