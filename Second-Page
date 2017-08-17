@@ -1,0 +1,11 @@
+<App>
+<Grid RowCount="3" ColumnCount="2">
+    <Rectangle Row="0" Column="1" Color="Purple"/>
+    <Rectangle Row="0" Column="0" Color="Blue"/>
+    <Rectangle Row="1" Column="1" Color="Green"/>
+    <Rectangle Row="1" Column="0" Color="Red"/>
+    <Rectangle Row="2" Column="1" Color="Yellow"/>
+    <Rectangle Row="2" Column="0" Color="Blue"/>
+</Grid>
+
+</App>
