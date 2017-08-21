@@ -23,3 +23,75 @@
 
 </DockPanel>
 </App>
+
+<App>
+	<PageControl>
+		<Fuse.iOS.StatusBarConfig Style="Light" />
+		<Page Background="#47AAEC">
+			<Text FontSize="20" Color="#000" Alignment="Center">Welcome to Ash!</Text>
+		<Text ux:Name="text" Alignment="BottomCenter" Margin= "130" Value="Let's Start!" FontSize="20" Color="#fff"/>
+				<Panel ux:Name="loadingCirclePanel">
+					<Circle ux:Name="loadingCircle" Alignment="BottomCenter" Width="10%" Height="43%" Opacity="0" StartAngleDegrees="0" LengthAngleDegrees="90">
+						<Stroke Width="1" Brush="#fff" />
+					</Circle>
+				</Panel>
+				<Clicked>
+					<Toggle Target="loading" />
+				</Clicked>
+				<Rectangle ux:Name="rectNormalScale" Alignment="BottomCenter" Margin="115" CornerRadius="30" Color="#FF3366" Width="300" Height="60"/>
+				<Circle ux:Name="loadingButton" Opacity="0" Alignment="BottomCenter" Layer="Background" Width="240" Height="240" Color="#FF3366">
+					<Scaling Factor="0.25" />
+				</Circle>
+		</Page>
+
+
+	<Panel ux:Name="loggedInView" Opacity="0" IsEnabled="false">
+	<Panel ux:Name="transitionScaleGuide" Width="500%" Height="500%" Alignment="BottomCenter" HitTestMode="None" BoxSizing="FillAspect" Aspect="1" />
+					<Grid RowCount="2">
+						<DockPanel Background="#ddd" Row="1">
+						</DockPanel>
+
+						<Grid Rows="1*,auto,100" Row="0">
+							<Circle  ux:Name="profile" Width="100" Height="100" Opacity="0">
+								<Circle Alignment="TopRight" Width="25" Height="25" Color="#0ff" Margin="0">
+									<Text Value="3" FontSize="10" Alignment="Center" Color="#fff" />
+								</Circle>
+								<Scaling ux:Name="profileScaling" Factor="0.1"/>
+							</Circle>
+						</Grid>
+					</Grid>
+				</Panel>
+<WhileTrue ux:Name="loading">
+			<Change changeWidth.Value="true" DelayBack="0"/>
+			<Change loadCircle.Value="true" DelayBack="0"/>
+
+			<Change scaleAndFade.Value="true" Delay="2.5" DelayBack="0"/>
+		</WhileTrue>
+<WhileTrue ux:Name="changeWidth">
+			<Change rectNormalScale.Width="60" Duration=".5" DurationBack="0" Easing="CircularInOut"/>
+		</WhileTrue>
+		<WhileTrue ux:Name="loadCircle">
+			<Change text.Opacity="0" Duration="0.2" DurationBack="0"/>
+			<Change loadingCircle.Opacity="1" Duration="0.3" Delay="0.2" DelayBack="0" DurationBack="0"/>
+			<Spin Target="loadingCircle" Frequency="2"/>
+			<Cycle Target="loadingCircle.LengthAngleDegrees" Low="30" High="300" Frequency="0.7" />
+		</WhileTrue>
+		<WhileTrue ux:Name="scaleAndFade">
+			<Change loadingCirclePanel.Opacity="0" Duration="0.1" />
+			<Change loadingButton.Opacity="1" Duration="0.01" />
+			<Change rectNormalScale.Opacity="0" Duration="0.01" />
+
+			<Scale Target="loadingButton" Factor="3" RelativeTo="SizeFactor" RelativeNode="transitionScaleGuide"
+			       Delay="0.01" Duration="0.7" Easing="ExponentialInOut" DurationBack="0" />
+		</WhileTrue>
+<WhileTrue ux:Name="showLoggedIn">
+			<Change loggedInView.Opacity="1" Delay="0.1" Duration="0.65" DurationBack="0.35" DelayBack="0.2" Easing="CubicInOut"/>
+
+			<RaiseUserEvent EventName="ToggleLoggedIn" />
+
+			<Change profile.Opacity="1" Delay="0.7" Duration="0.1" DurationBack="0.2" DelayBack="0"/>
+			<Change profileScaling.Factor="1" Delay="0.7" Duration="0.4" Easing="CircularInOut"/>
+		</WhileTrue>
+		
+	</PageControl>
+</App>
