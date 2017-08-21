@@ -1,13 +1,25 @@
 <App>
-    <DockPanel>
-        <StatusBarBackground Dock="Top" />
-        <ScrollView ClipToBounds="true">
-            <StackPanel>
-                <Text FontSize="30">Welcome to Ash!</Text>
-                <Slider />
-                <Button Text="Button" />
-                <Switch Alignment="Left" />
-            </StackPanel>
-        </ScrollView>
-    </DockPanel>
+<JavaScript>
+    module.exports = {
+        gotoFirst: function() { router.goto("firstPage"); },
+        gotoSecond: function() { router.goto("secondPage"); }
+    };
+</JavaScript>
+
+<Router ux:Name="router" />
+
+<DockPanel>
+    <Navigator DefaultPath="firstPage">
+        <Page ux:Template="firstPage">
+            <Text Alignment="Center">Page 1</Text>
+        </Page>
+        <Page ux:Template="secondPage">
+            <Text Alignment="Center">Page 2 </Text>
+        </Page>
+    </Navigator>
+    
+        <Button Text="First page"  Alignment ="Left" Clicked="{gotoFirst}" />
+        <Button Text="Second page" Alignment="Right" Clicked="{gotoSecond}" />
+
+</DockPanel>
 </App>
