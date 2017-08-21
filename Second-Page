@@ -1,11 +1,11 @@
 <App>
-<Grid RowCount="3" ColumnCount="2">
-    <Rectangle Row="0" Column="1" Color="Purple"/>
-    <Rectangle Row="0" Column="0" Color="Blue"/>
-    <Rectangle Row="1" Column="1" Color="Green"/>
-    <Rectangle Row="1" Column="0" Color="Red"/>
-    <Rectangle Row="2" Column="1" Color="Yellow"/>
-    <Rectangle Row="2" Column="0" Color="Blue"/>
+   <ScrollView Background="#f9f9f9">
+<Grid ColumnCount="3" DefaultColumn="1*" CellSpacing="10" Margin="10,10">
+<Each Count="15">
+<Rectangle BoxSizing="FillAspect" Aspect="1" Color="#eee" CornerRadius="2" />
+</Each>
 </Grid>
-
+</ScrollView>
 </App>
+
+
