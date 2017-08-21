@@ -1,0 +1,30 @@
+<App>
+  <JavaScript>
+    module.exports = {
+        gotoFirst: function() { router.goto("firstPage"); },
+        gotoSecond: function() { router.goto("secondPage"); },
+        gotoThird: function() { router.goto("thirdPage"); }
+    };
+</JavaScript>
+
+<Router ux:Name="router" />
+
+<DockPanel>
+    <Navigator DefaultPath="firstPage">
+        <Page ux:Template="firstPage">
+            <Text Alignment="Center">Welcome to Team Ash</Text>
+        </Page>
+        <Page ux:Template="secondPage">
+            <Text Alignment="Center">Login</Text>
+        </Page>
+        <Page ux:Template="thirdPage">
+            <Text Alignment="Center">New account</Text>
+        </Page>
+    </Navigator>
+
+    <Grid Dock="Bottom" Columns="1*,1*">
+        <Button Text="Login" Padding="20" Clicked="{gotoSecond}" />
+        <Button Text="Make a new account" Padding="20" Clicked="{gotoThird}" />
+    </Grid>
+</DockPanel>
+</App>
