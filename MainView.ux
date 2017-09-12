@@ -77,6 +77,7 @@
 					<Panel ux:Name="cross">
 						<Rectangle Width="30%" Height="2" Color="#fff"/>
 						<Rectangle Height="30%" Width="2" Color="#fff"/>
+						<Text Value="Logout" Color="#fff"/>
 					</Panel>
 
 					<WhileTrue ux:Name="showPlusButton">
@@ -87,7 +88,7 @@
 					
 					<Clicked>
 						<Toggle Target="loading" Delay="0.2" />
-						<RaiseUserEvent EventName="ToggleLoggedIn1" Delay="0.3"/>
+						<RaiseUserEvent EventName="ToggleLoggedIn" Delay="0.3"/>
 						<Change scalePlusButton.Value="true" />
 						<Nothing Duration="0.8" />
 					</Clicked>
@@ -110,8 +111,8 @@
 				</Panel>
 
 				<Panel ux:Name="loggedInView" Opacity="0" IsEnabled="false">
-					<Grid RowCount="2">
-						<DockPanel Background="#ddd" Row="1">
+					<Grid RowCount="1">
+						<DockPanel Background="#000" >
 							<StackPanel>
 								<Each Items="{items}">
 									<TaskItem>
@@ -127,71 +128,14 @@
 									</TaskItem>
 								</Each>
 							</StackPanel>
-
-	
-
-
-
-
-<Panel ux:Name="plusButton1" Width="40" Height="40" Alignment="BottomRight" Margin="10" Opacity="0" IsEnabled="false">
-					<Panel ux:Name="cross1">
-						<Rectangle Width="30%" Height="2" Color="#ff0"/>
-						<Rectangle Height="30%" Width="2" Color="#ff0"/>
-					</Panel>
-
-<WhileTrue ux:Name="showPlusButton1">
-						<Change plusButtonScaling.Factor="1" Duration="0.4" Easing="CircularInOut" DurationBack="0"/>
-					</WhileTrue>
-
-<Clicked>
-						<Toggle Target="loading" Delay="0.2" />
-						<RaiseUserEvent EventName="ToggleLoggedIn1" Delay="0.3"/>
-						<Change scalePlusButton1.Value="true" />
-						<Nothing Duration="0.8" />
-					</Clicked>
-
-<WhileTrue ux:Name="scalePlusButton1">
-						<Change cross.Opacity="0" Duration="0.1" />
-						<Scale Target="plusButton1TransitionCircle" Factor="2.5" RelativeTo="SizeFactor" RelativeNode="transitionScaleGuide"
-						       Duration="0.6" Easing="ExponentialInOut" DurationBack="0" />
-						<Change plusButton1Translation.Y="-0.5" Duration="0.6" Easing="ExponentialInOut" DurationBack="0"/>
-						<Change plusButton1Translation.X="-0.5" Duration="0.6" Easing="ExponentialInOut" DurationBack="0"/>
-					</WhileTrue>
-
-<Translation ux:Name="plusButton1Translation" RelativeTo="ParentSize" />
-
-					<Circle ux:Name="plusButton1TransitionCircle" Color="#FF0000" Layer="Background" Width="236" Height="236">
-						<Scaling ux:Name="plusButton1CircleScaling" Factor="0.25" />
-					</Circle>
-
-<Circle ux:Name="plusButton1BackgroundCircle1" Color="#FF3300" />
-				</Panel>
-
-
-<DockPanel>
-<Page ux:Template="Test">
-            <Text Alignment="Center">Test</Text>
-        </Page>
-</DockPanel>
-
-
-
-
-
-
-
-
-
-
-
-						
-<Text ux:Class="CalendarText" FontSize="16"/>
-
+					
 
 
 <Router ux:Name="router" />
- 
  	<DockPanel>
+			<Rectangle Layer="Background">
+				<ImageFill File="Assets/SecondPage.png" WrapMode="ClampToEdge"/>
+			</Rectangle>
  		<JavaScript File="MainView.js"/>
  		<StackPanel Dock="Top" Background="#FF3366">
  			<StatusBarBackground/>
@@ -202,7 +146,7 @@
  					       Padding="20,0,0,0" HitTestMode="LocalBounds">
  						<DockPanel>
  							<Image File="arrow-left-white.png" Height="20" Color="#fff" Dock="Left"/>
-							<Text Alignment="Center" Margin="5,0,0,0" FontSize="18" Color="#fff" Dock="Right">
+							<Text Alignment="Top" Margin="5,14,0,0" FontSize="18" Color="#fff" Dock="Right">
  								BACK
  							</Text>
  						</DockPanel>
@@ -227,8 +171,8 @@
  				<ScrollView>
 					<StackPanel ItemSpacing="20" Margin="7">
 						<Each Items="{pages}">
-							<Panel Clicked="{clicked}" Height="188">
-								<Rectangle Layer="Background" CornerRadius="3" Color="#3FC1F4"/>
+							<Panel Clicked="{clicked}" Height="150">
+								<Rectangle Layer="Background" CornerRadius="30" Color="#3FC1F4"/>
  								<Text Value="{title}" Alignment="Center" Color="#fff" FontSize="25" />
  							</Panel>
  						</Each>
@@ -297,7 +241,7 @@
 			</WhileKeyboardVisible>
 
 			<Rectangle Layer="Background">
-				<ImageFill File="Assets/bglogin.png" WrapMode="ClampToEdge"/>
+				<ImageFill File="Assets/CodeImage.png" WrapMode="ClampToEdge"/>
 			</Rectangle>
 
 			<Panel Row="2" Width="150" Height="60">
@@ -330,6 +274,4 @@
 		</Grid>
 	</Panel>
 </App>
-
-
 
