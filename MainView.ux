@@ -1,60 +1,3 @@
-<App Background="#eee">
-	<Router ux:Name="router" />
-
-	<DockPanel>
-		<JavaScript File="MainView.js"/>
-		<StackPanel Dock="Top" Background="#FF3366">
-			<StatusBarBackground/>
-			<Fuse.iOS.StatusBarConfig Style="Light"/>
-			<Panel ux:Name="navBar" Dock="Top" Height="50">
-				<WhileCanGoBack>
-					<Panel ux:Name="backButton" Width="90" Height="50" Alignment="Left" 
-					       Padding="20,0,0,0" HitTestMode="LocalBounds">
-						<DockPanel>
-							<Image File="arrow-left-white.png" Height="20" Color="#fff" Dock="Left"/>
-							<Text Alignment="Center" Margin="5,0,0,0" FontSize="18" Color="#fff" Dock="Right">
-								BACK
-							</Text>
-						</DockPanel>
-						<AddingAnimation>
-							<Change backButton.Opacity="0" Duration=".3" />
-						</AddingAnimation>
-						<RemovingAnimation>
-							<Change backButton.Opacity="0" Duration=".3" />
-						</RemovingAnimation>
-						<Clicked>
-							<GoBack />
-						</Clicked>
-					</Panel>
-				</WhileCanGoBack>
-			</Panel>
-		</StackPanel>
-		
-		<BottomBarBackground Dock="Bottom" />
-		
-		<Navigator DefaultPath="mainPage">
-			<Page ux:Template="mainPage">
-				<ScrollView>
-					<StackPanel ItemSpacing="20" Margin="7">
-						<Each Items="{pages}">
-							<Panel Clicked="{clicked}" Height="188">
-								<Rectangle Layer="Background" CornerRadius="3" Color="#3FC1F4"/>
-								<Text Value="{title}" Alignment="Center" Color="#fff" FontSize="25" />
-							</Panel>
-						</Each>
-					</StackPanel>
-				</ScrollView>
-				
-				<AlternateRoot ParentNode="navBar">
-					<NavBarTitle>LEVEL</NavBarTitle>
-				</AlternateRoot>
-			</Page>
-
-			<SubPage ux:Template="subPage" navBar="navBar" />
-		</Navigator>
-	</DockPanel>
-</App>
-
 <App>
 	<Panel>
 
@@ -73,41 +16,39 @@
 		<UserEvent Name="ToggleLoggedIn" />
 		<DockPanel>
 			<Panel>
-				<Panel ux:Name="plusButton" Width="60" Height="60" Alignment="BottomRight" Margin="20" Opacity="0" IsEnabled="false">
+				<Panel ux:Name="logoutButton" Width="60" Height="60" Alignment="BottomRight" Margin="20" Opacity="0" IsEnabled="false">
 					<Panel ux:Name="cross">
-						<Rectangle Width="30%" Height="2" Color="#fff"/>
-						<Rectangle Height="30%" Width="2" Color="#fff"/>
-						<Text Value="Logout" Color="#fff"/>
+						<Text Value="Logout" Color="#fff" Alignment= "BottomRight" Margin = "-20" Height="60" Width = "75" />
 					</Panel>
 
-					<WhileTrue ux:Name="showPlusButton">
-						<Change plusButtonScaling.Factor="1" Duration="0.4" Easing="CircularInOut" DurationBack="0"/>
+					<WhileTrue ux:Name="showlogoutButton">
+						<Change logoutButtonScaling.Factor="1" Duration="0.4" Easing="CircularInOut" DurationBack="0"/>
 					</WhileTrue>
 
-					<Scaling ux:Name="plusButtonScaling" Factor="0.1"/>
+					<Scaling ux:Name="logoutButtonScaling" Factor="0.1"/>
 					
 					<Clicked>
 						<Toggle Target="loading" Delay="0.2" />
 						<RaiseUserEvent EventName="ToggleLoggedIn" Delay="0.3"/>
-						<Change scalePlusButton.Value="true" />
+						<Change scalelogoutButton.Value="true" />
 						<Nothing Duration="0.8" />
 					</Clicked>
 
-					<WhileTrue ux:Name="scalePlusButton">
+					<WhileTrue ux:Name="scalelogoutButton">
 						<Change cross.Opacity="0" Duration="0.1" />
-						<Scale Target="plusButtonTransitionCircle" Factor="2.5" RelativeTo="SizeFactor" RelativeNode="transitionScaleGuide"
+						<Scale Target="logoutButtonTransitionCircle" Factor="2.5" RelativeTo="SizeFactor" RelativeNode="transitionScaleGuide"
 						       Duration="0.6" Easing="ExponentialInOut" DurationBack="0" />
-						<Change plusButtonTranslation.Y="-0.5" Duration="0.6" Easing="ExponentialInOut" DurationBack="0"/>
-						<Change plusButtonTranslation.X="-0.5" Duration="0.6" Easing="ExponentialInOut" DurationBack="0"/>
+						<Change logoutButtonTranslation.Y="-0.5" Duration="0.6" Easing="ExponentialInOut" DurationBack="0"/>
+						<Change logoutButtonTranslation.X="-0.5" Duration="0.6" Easing="ExponentialInOut" DurationBack="0"/>
 					</WhileTrue>
 
-					<Translation ux:Name="plusButtonTranslation" RelativeTo="ParentSize" />
+					<Translation ux:Name="logoutButtonTranslation" RelativeTo="ParentSize" />
 
-					<Circle ux:Name="plusButtonTransitionCircle" Color="#FF3366" Layer="Background" Width="236" Height="236">
-						<Scaling ux:Name="plusButtonCircleScaling" Factor="0.25" />
+					<Circle ux:Name="logoutButtonTransitionCircle" Color="#FF3366" Layer="Background" Width="236" Height="236">
+						<Scaling ux:Name="logoutButtonCircleScaling" Factor="0.25" />
 					</Circle>
 
-					<Circle ux:Name="plusButtonBackgroundCircle" Color="#FF3366" />
+					<Circle ux:Name="logoutButtonBackgroundCircle" Color="#FF3366" />
 				</Panel>
 
 				<Panel ux:Name="loggedInView" Opacity="0" IsEnabled="false">
@@ -134,7 +75,7 @@
 <Router ux:Name="router" />
  	<DockPanel>
 			<Rectangle Layer="Background">
-				<ImageFill File="Assets/SecondPage.png" WrapMode="ClampToEdge"/>
+				<Image StretchMode = "UniformToFill" File="Assets/SecondPage.png" />
 			</Rectangle>
  		<JavaScript File="MainView.js"/>
  		<StackPanel Dock="Top" Background="#FF3366">
@@ -149,6 +90,7 @@
 							<Text Alignment="Top" Margin="5,14,0,0" FontSize="18" Color="#fff" Dock="Right">
  								BACK
  							</Text>
+
  						</DockPanel>
  						<AddingAnimation>
  							<Change backButton.Opacity="0" Duration=".3" />
@@ -224,14 +166,14 @@
 		</WhileTrue>
 		<WhileTrue ux:Name="showLoggedIn">
 			<Change loggedInView.Opacity="1" Delay="0.1" Duration="0.65" DurationBack="0.35" DelayBack="0.2" Easing="CubicInOut"/>
-			<Change plusButton.Opacity="1" Delay="0.1" Duration="0.65" DurationBack="0.7" DelayBack="0.3" Easing="CubicInOut"/>
+			<Change logoutButton.Opacity="1" Delay="0.1" Duration="0.65" DurationBack="0.7" DelayBack="0.3" Easing="CubicInOut"/>
 
 
 			
-			<Change showPlusButton.Value="true" />
+			<Change showlogoutButton.Value="true" />
 			<RaiseUserEvent EventName="ToggleLoggedIn" />
 			<Change loggedInView.IsEnabled="true" />
-			<Change plusButton.IsEnabled="true" />
+			<Change logoutButton.IsEnabled="true" />
 		</WhileTrue>
 
 		<Grid ux:Name="loggedOutView" Rows="1.5*,auto,1*" Padding="40,0">
@@ -241,7 +183,7 @@
 			</WhileKeyboardVisible>
 
 			<Rectangle Layer="Background">
-				<ImageFill File="Assets/CodeImage.png" WrapMode="ClampToEdge"/>
+				<Image StretchMode = "UniformToFill" File="Assets/Intro.jpeg" />
 			</Rectangle>
 
 			<Panel Row="2" Width="150" Height="60">
@@ -260,18 +202,17 @@
 				</Circle>
 			</Panel>
 
-			<Image ux:Name="mark" Row="0" File="Assets/marklogin.png" Margin="40"/>
+			<Image ux:Name="mark" Row="0" File="Assets/AshLogo.png" Margin="40"/>
 
 			<Grid ux:Name="loginArea" Row="1" Padding="0,20" RowCount="2" Columns="auto,1*" Height="160" MaxWidth="400">
 				<Image     Row="0" Column="0" File="Assets/user_icon.png" Width="20" Height="20" Margin="10,0,30,0" Alignment="Left"/>
-				<TextInput Row="0" Column="1" PlaceholderText="Username" PlaceholderColor="#999" TextColor="#fff" CaretColor="#fff" />
+				<TextInput Row="0" Column="1" PlaceholderText="Username" PlaceholderColor="#fff" TextColor="#fff" CaretColor="#fff" />
 				<Rectangle Row="0" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#fff"/>
 
 				<Image     Row="1" Column="0" File="Assets/password_icon.png" Width="20" Height="20" Margin="10,0,30,0" Alignment="Left"/>
-				<TextInput Row="1" Column="1" PlaceholderText="Password" PlaceholderColor="#999" TextColor="#fff" CaretColor="#fff" IsPassword="true"/>
+				<TextInput Row="1" Column="1" PlaceholderText="Password" PlaceholderColor="#fff" TextColor="#fff" CaretColor="#fff" IsPassword="true"/>
 				<Rectangle Row="1" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#fff"/>
 			</Grid>
 		</Grid>
 	</Panel>
 </App>
-
