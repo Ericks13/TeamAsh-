@@ -9,7 +9,7 @@
 	
 	<Visual ux:Dependency="navBar" />
 	<Panel>
-	<Image StretchMode = "UniformToFill" File="Assets/CodeImage.png" />
+	<Image StretchMode = "Scale9" File="Assets/TierA.png" />
 		<AlternateRoot ParentNode="navBar">
 			<NavBarTitle Value="{title}" />
 		</AlternateRoot>
